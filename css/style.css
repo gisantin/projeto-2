@@ -33,7 +33,7 @@ body{
     padding: 10px;
     font-size: 14px;
     resize: none;
-    background-color: #eaeaea
+    background-color: white;
 }
 
 hr{
@@ -65,6 +65,7 @@ hr{
     padding: 1px 1px 5px;
     font-size: 15px;
     display: flex;
+    position: relative;
 
 }
 
@@ -79,5 +80,32 @@ hr{
     border: 0;
     background: 0 0;
     cursor: pointer;
-    padding: 1px 1px 1px 1px;
+    position: absolute;
+    top: 24px;
+    left: 183px;
+}
+
+.list-timeline__p{
+    padding: 1px 5px;
+    text-decoration: none;
+    color: black;
+
+}
+
+.list-timeline__p-check{
+    padding: 1px 5px;
+    text-decoration: line-through;
+    color: gray;
+}
+
+.list-timeline__check{
+    padding: 1px 5px;
+    font-size: 13px;
+    cursor: pointer;
+    
+}
+
+}
+.list-timeline__clear{
+
 }
