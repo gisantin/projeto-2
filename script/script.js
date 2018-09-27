@@ -3,16 +3,26 @@ const inputList = document.getElementById("listComposerInput");
 const buttonCreateList = document.querySelector(".list-composer__button");
 const listTimeline = document.querySelector(".list-timeline");
 
+
+
+let move = [];
+
 buttonCreateList.addEventListener("click", function (e) {
     e.preventDefault();
 
-    if (inputList.value === undefined || inputList.value === null || inputList.value === "" || inputList.value === " ") {
+    //console.log(listTimeline.children)
+
+    var newInputList = inputList.value.replace(/\s\s+/g, '');
+
+    if (newInputList === undefined || newInputList === null || newInputList=== "" || newInputList.length === 0 ) {
         return false;
+
     }
 
     //div q abraça tdo mundo
     const div = document.createElement("div");
     div.className = "list-timeline__box"
+    div.setAttribute("dragable", true);
 
     //cria um novo elemento pra lista
     const newListP = document.createElement("p");
@@ -28,12 +38,19 @@ buttonCreateList.addEventListener("click", function (e) {
     div.appendChild(buttonDel);
 
     listTimeline.insertBefore(div, listTimeline.childNodes[0]);
+    move.push(listTimeline)
+
 
     inputList.value = "";
-    
+
+
+    div.addEventListener("dragstart", function(e){
+        console.log(e.target);
+        const take = e.target 
+    })
+   
 
     const botaoExcluir = document.querySelector(".list-timeline__delete-button");
-
     botaoExcluir.addEventListener("click", function (evento) {
         evento.preventDefault();
         div.remove();
@@ -54,6 +71,7 @@ buttonCreateList.addEventListener("click", function (e) {
 
     const check = document.querySelector(".list-timeline__check");
     const clear = document.querySelector(".list-timeline__clear");
+    /*const buttonCreateList = document.querySelector(".list-composer__button");*/
 
     check.addEventListener("click", function(checkall){
         if(taskOk.classList.contains("list-timeline__p-check")){
@@ -63,20 +81,22 @@ buttonCreateList.addEventListener("click", function (e) {
             taskOk.classList.add("list-timeline__p-check");
         }
     })
-    clear.addEventListener("click", function(){
+   clear.addEventListener("click", function(){
         if(listTimeline.classList.contains("list-timeline")){
-            listTimeline.remove();
-        }else{
-            buttonCreateList.add(inputList);
+            div.remove();
+            /*buttonCreateList.add(inputList.value);*/
         }
-        
-        
-        
-
     })
 
-
+    buttonCreateList.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (inputList.value === "" || inputList.value === " ") {
+            return false;
+            
+        }
+    })
 })
+
 
 
     /*const buttonDoneAll = document.createElement("div");
@@ -93,3 +113,5 @@ buttonCreateList.addEventListener("click", function (e) {
         }*/
     
 
+    /*let move = []
+    let total = move.push()*/
